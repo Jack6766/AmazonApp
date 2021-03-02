@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "Amazon Book Store";
+}
+
+@model ProjectListViewModel
+
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1 class="text-center">Welcome to Amazon Bookstore!</h1>
+        </header>
+
+        <table class="table table-bordered table-hover table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Title</th>
+                    <th>Author Name</th>
+                    <th>Publisher</th>
+                    <th>ISBN</th>
+                    <th>Categories</th>
+                    <th>Price</th>
+                    <th># of Pages</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var x in Model.Books)
+                {
+                    <tr class="table-striped">
+                        <td>@x.Title</td>
+                        <td>@x.AuthorLast, @x.AuthorFirst</td>
+                        <td>@x.Publisher</td>
+                        <td>@x.ISBN</td>
+                        <td>@x.Category1, @x.Category2</td>
+                        <td>$@x.Price</td>
+                        <td>@x.NumPages</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+
+<div page-model="@Model.PagingInfo"  page-action="Index" page-classes-enabled="true" page-class="btn"
+     page-class-normal="btn-outline-dark"
+     page-class-selected="btn-success"
+     class="btn-group pull-right m-1"></div>
