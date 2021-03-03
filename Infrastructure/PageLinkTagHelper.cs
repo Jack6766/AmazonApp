@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using AmazonApplication.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace AmazonApplication.Infrastructure
 {
@@ -19,6 +20,7 @@ namespace AmazonApplication.Infrastructure
             urlHelperFactory = hp;
         }
 
+        //We make these up to help us dynamically write html to our index page
         [ViewContext]
         [HtmlAttributeNotBound]
         public ViewContext ViewContext { get; set; }
@@ -26,6 +28,11 @@ namespace AmazonApplication.Infrastructure
         public PagingInfo PageModel { get; set; }
 
         public string PageAction { get; set; }
+
+        [HtmlAttributeName(DictionaryAttributePrefix = "page-url-")] //each time we start something with "page-url-",
+                                                                     //it will be added to the dictionary. Use common
+                                                                     //prefixes to link stuff together in a dictionary.
+        public Dictionary<string, object> PageUrlValues { get; set; } = new Dictionary<string, object>();
 
         //This is to help with bootstrapping the page linkers
         public bool PageClassesEnabled { get; set; } = false;
@@ -43,8 +50,10 @@ namespace AmazonApplication.Infrastructure
             for (int i = 1; i <= PageModel.TotalPages; i++)
             {
                 TagBuilder tag = new TagBuilder("a");
-                tag.Attributes["href"] = urlHelper.Action(PageAction, new { page = i });
-                tag.InnerHtml.Append(i.ToString());
+
+                PageUrlValues["page"] = i;
+                tag.Attributes["href"] = urlHelper.Action(PageAction,
+                    PageUrlValues); //We pull the info from our dictionary and use it to build the page values.
 
                 if (PageClassesEnabled)
                 {

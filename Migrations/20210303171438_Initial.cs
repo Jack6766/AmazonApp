@@ -17,7 +17,7 @@ namespace AmazonApplication.Migrations
                     AuthorLast = table.Column<string>(type: "TEXT", nullable: false),
                     Publisher = table.Column<string>(type: "TEXT", nullable: false),
                     ISBN = table.Column<string>(type: "TEXT", nullable: false),
-                    Category1 = table.Column<string>(type: "TEXT", nullable: false),
+                    Classification = table.Column<string>(type: "TEXT", nullable: false),
                     Category2 = table.Column<string>(type: "TEXT", nullable: true),
                     Price = table.Column<double>(type: "REAL", nullable: false),
                     NumPages = table.Column<int>(type: "INTEGER", nullable: false)

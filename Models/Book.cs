@@ -23,7 +23,7 @@ namespace AmazonApplication.Models
             ErrorMessage = "ISBN is not in required format of ###-##########")]
         public string ISBN { get; set; }
         [Required]
-        public string Category1 { get; set; }
+        public string Classification { get; set; }
         public string Category2 { get; set; }
         [Required]
         public double Price { get; set; }

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AmazonApplication.Migrations
 {
     [DbContext(typeof(AmazonDbContext))]
-    [Migration("20210302022401_Initial")]
+    [Migration("20210303171438_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -31,11 +31,11 @@ namespace AmazonApplication.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Category1")
-                        .IsRequired()
+                    b.Property<string>("Category2")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Category2")
+                    b.Property<string>("Classification")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("ISBN")

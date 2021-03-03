@@ -29,11 +29,11 @@ namespace AmazonApplication.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Category1")
-                        .IsRequired()
+                    b.Property<string>("Category2")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Category2")
+                    b.Property<string>("Classification")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("ISBN")
