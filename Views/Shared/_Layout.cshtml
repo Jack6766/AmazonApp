@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -6,11 +7,19 @@
     <title>@ViewData["Title"] - AmazonApplication</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <!--Link to simple bootstrap styels-->
+    <script src="https://kit.fontawesome.com/9873785e23.js" crossorigin="anonymous"></script>
+
+
 </head>
 <body>
     <div class="bg-success text-white p-2">
-        <span class="navbar-brand ml-2">Amazon Bookstore</span>
-        <vc:navigation-menu />
+        <div class="navbar-brand">Amazon Bookstore</div>
+            <div class="text-right">
+                <vc:cart-summary />
+                <vc:navigation-menu />
+            </div>
+        </div>
     </div>
     @RenderBody()
 </body>
