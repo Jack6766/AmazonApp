@@ -1,0 +1,51 @@
+﻿@*MVVM - Model View View Model Format*@
+@page
+@model AmazonApplication.Pages.CartModel
+@{}
+
+@*This is the cart view that appears when the customer clicks "Add to Cart"*@
+<h2>Your Cart</h2>
+
+<table class="table table-bordered table-striped">
+
+    <thead>
+        <tr>
+            <th>Book</th><th class="text-center">Quantity</th><th class="text-center">Price</th><th class="text-center">Subtotal</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach(var line in Model.Cart.Lines)
+        {
+        <tr>
+            <td>@line.Book.Title</td>
+            <td class="text-center">@line.Quantity</td>
+            <td class="text-right">$@line.Price</td>
+            <td class="text-right">@((line.Quantity * line.Price).ToString("c", System.Globalization.CultureInfo.GetCultureInfo("en-us")))</td>
+            <td class="text-center">
+                <form asp-page-handler="Remove" method="post">
+                    <input type="hidden" name="BookID"
+                           value="@line.Book.BookID" />
+                    <input type="hidden" name="returnUrl"
+                           value="@Model.ReturnUrl" />
+                    <button type="submit" class="btn btn-sm btn-danger">
+                        Remove
+                    </button>
+                </form>
+            </td>
+        </tr>
+        }
+    </tbody>
+
+    @*this will calculate the total of the whole cart*@
+    <tfoot>
+        <tr>
+            <td colspan="3" class="text-right">Total:</td>
+            <td class="text-right">@(Model.Cart.ComputeTotalSum().ToString("c", System.Globalization.CultureInfo.GetCultureInfo("en-us")))</td>
+        </tr>
+    </tfoot>
+</table>
+
+<div class="text-center">
+    <a class="btn btn-success" href="@Model.ReturnUrl">Continue Shopping</a>
+</div>

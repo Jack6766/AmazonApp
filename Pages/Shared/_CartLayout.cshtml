@@ -1,0 +1,21 @@
+﻿@*This shared view will be used with the Razor Pages.*@ 
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=content-width" />
+    <title>Amazon Bookstore</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="bg-success text-white p-2">
+        <span class="navbar-brand ml-2">Amazon Bookstore</span>
+        <vc:navigation-menu />
+    </div>
+    <div class="m-1 p-1">
+        @RenderBody()
+    </div>
+
+</body>
+</html>
